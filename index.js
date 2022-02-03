@@ -3,17 +3,13 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const os = require("os-utils");
 const yahooFinance = require("yahoo-finance2").default;
-
 const app = express();
-const port = process.env.PORT || 5001;
-const httpServer = createServer(app);
 
-app.listen(port, (req, res) => {
-  console.log("Running the Port", port);
-});
+const httpServer = createServer(app);
+const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! for socket IO");
 });
 
 const io = new Server(httpServer, {
@@ -34,14 +30,9 @@ io.on("connection", (socket) => {
       console.log(regularMarketPrice);
     }
     yahoApi();
-
-    // os.cpuUsage(function (cpuPercentage) {
-    //   const d = new Date();
-    //   let seconds = d.getSeconds();
-
-    // });
   }, 1000);
 });
 
-httpServer.listen(3000);
-console.log(port);
+app.listen(port, (req, res) => {
+  console.log("Running the Port", port);
+});
