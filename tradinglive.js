@@ -5,15 +5,16 @@ module.exports = function (io) {
     let updatedMarketPrice = {};
     setInterval(() => {
       const symbols = [
-        'NIFTY50.NS',
+        '^NSEI',
         'MARUTI.NS',
         'AXISBANK.NS',
         'SBIN.NS',
         'INDUSINDBK.NS',
         'UPL.NS',
       ];
+
       async function yahoApi() {
-        const quote = await yahooFinance.quote(symbols);
+        const quote = await yahooFinance.quote(symolsReal);
         quote.map((element) =>
           // console.log(element.symbol, element.regularMarketPrice)
 
@@ -61,3 +62,16 @@ module.exports = function (io) {
 
 // module.exports.design = design;
 // // httpServer.listen(3000);
+
+const io = new Server(httpServer, {
+  transports: ['websocket', 'polling'],
+});
+
+io.on('connection', (client) => {
+  setInterval(() => {
+    client.emit('symbol', {
+      name: 'BTC-USD',
+      value: regularMarketPrices,
+    });
+  }, 1000);
+});
