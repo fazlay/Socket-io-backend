@@ -1,26 +1,18 @@
-const yahooFinance = require("yahoo-finance2").default;
+const yahooFinance = require('yahoo-finance2').default;
 
 module.exports = function (io) {
-  io.on("connection", (client) => {
+  io.on('connection', (client) => {
     let updatedMarketPrice = [];
     setInterval(() => {
-      const symbols = [
-        "^NSEI",
-        "MARUTI.NS",
-        "AXISBANK.NS",
-        "SBIN.NS",
-        "INDUSINDBK.NS",
-        "UPL.NS",
-      ];
+      const symbols = 'BTC-USD';
 
       async function yahoApi() {
         const quote = await yahooFinance.quote(symbols);
-        quote.map((element) =>
-          // console.log(element.symbol, element.regularMarketPrice)
-          updatedMarketPrice.push(element.regularMarketPrice)
-        );
+
+        updatedMarketPrice.push(quote.regularMarketPrice);
+
         console.log(updatedMarketPrice);
-        client.emit("symbol", updatedMarketPrice);
+        client.emit('symbol', updatedMarketPrice);
       }
 
       yahoApi();
