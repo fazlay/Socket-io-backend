@@ -10,7 +10,7 @@ module.exports = function (io) {
         try {
           const quote = await yahooFinance.quote(symbols);
 
-          if (updatedMarketPrice.length > 20) {
+          if (updatedMarketPrice.length > 40) {
             console.log(updatedMarketPrice.length);
             updatedMarketPrice.shift();
           }
@@ -27,6 +27,6 @@ module.exports = function (io) {
       }
 
       yahoApi();
-    }, 45000);
+    }, 25000);
   });
 };
