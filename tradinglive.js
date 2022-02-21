@@ -11,7 +11,7 @@ module.exports = function (io) {
 
         // updatedMarketPrice.push(quote.regularMarketPrice);
 
-        console.log(quote.updatedMarketPrice);
+        console.log(quote.regularMarketPrice);
         client.emit('symbol', quote);
       }
 
