@@ -9,7 +9,7 @@ module.exports = function (io) {
       async function yahoApi() {
         const quote = await yahooFinance.quote(symbols);
 
-        updatedMarketPrice.push(quote.regularMarketPrice);
+        // updatedMarketPrice.push(quote.regularMarketPrice);
 
         console.log(updatedMarketPrice);
         client.emit('symbol', quote);
