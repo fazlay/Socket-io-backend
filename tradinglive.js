@@ -16,6 +16,6 @@ module.exports = function (io) {
       }
 
       yahoApi();
-    }, 1000);
+    }, 5000);
   });
 };
