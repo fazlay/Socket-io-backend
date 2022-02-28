@@ -16,6 +16,6 @@
     "nodemon": "^2.0.15",
     "os-utils": "^0.0.14",
     "socket.io": "^4.4.1",
-    "yahoo-finance2": "^2.1.2"
+    "yahoo-finance2": "^2.1.9"
   }
 }
